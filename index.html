@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>大东北 · 王哥私房菜</title>
+  <title>大东北 -- 永远的土</title>
   <style>
     :root {
       --red: #c0392b;
@@ -67,7 +67,7 @@
       overflow: hidden;
       background:
         linear-gradient(to bottom, rgba(26,10,0,0.55) 0%, rgba(26,10,0,0.75) 100%),
-        url("https://images.unsplash.com/photo-1563245372-f21724e3856d?w=1400&auto=format&fit=crop") center/cover no-repeat;
+        url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1400&auto=format&fit=crop") center/cover no-repeat;
     }
     .hero-badge {
       display: inline-block;
@@ -210,10 +210,17 @@
       transform: translateY(-4px);
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
-    .dish-card img {
+    .dish-card .img-wrap {
       width: 100%;
       aspect-ratio: 4/3;
+      overflow: hidden;
+      background: linear-gradient(135deg, #c0392b 0%, #d4a017 100%);
+    }
+    .dish-card .img-wrap img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
+      display: block;
     }
     .dish-info {
       padding: 1rem;
@@ -257,7 +264,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="brand">大东北 · 王哥私房菜</div>
+  <div class="brand">大东北 -- 永远的土</div>
   <ul>
     <li><a href="#intro">关于我们</a></li>
     <li><a href="#menu">菜单</a></li>
@@ -267,8 +274,8 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">正宗东北风味 · 私房秘制</div>
-  <h1>大东北<br/><span>王哥私房菜</span></h1>
+  <div class="hero-badge">正宗东北风味 · 永远的土地</div>
+  <h1>大东北<br/><span>永远的土</span></h1>
   <p>源自白山黑水间的家乡味道，用心烹饪每一道菜，让每一口都是回忆。</p>
   <a href="#menu" class="hero-btn">查看菜单</a>
 </section>
@@ -276,14 +283,15 @@
 <!-- INTRO -->
 <section class="intro" id="intro">
   <img
-    src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800&auto=format&fit=crop"
-    alt="王哥私房菜"
+    src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&auto=format&fit=crop"
+    onerror="this.onerror=null;this.src='https://picsum.photos/seed/restaurant/800/600'"
+    alt="大东北 -- 永远的土"
   />
   <div class="intro-text">
     <h2>一口东北味，<em>一份家乡情</em></h2>
     <div class="divider"></div>
-    <p>王哥私房菜扎根东北饮食文化，精选来自长白山脉与松嫩平原的新鲜食材，将一代代传承的东北家常菜以私房秘制手法重新演绎。</p>
-    <p>无论是豪迈的铁锅炖，还是精致的凉拌冷盘，每一道菜背后都是王哥对家乡味道的执念与热爱。来这里，吃的不只是饭，是故事，是温度。</p>
+    <p>大东北，永远的土。这片土地孕育了最朴实、最有力量的饮食文化。我们精选来自长白山脉与松嫩平原的新鲜食材，将一代代传承的东北家常菜以私房秘制手法重新演绎。</p>
+    <p>无论是豪迈的铁锅炖，还是精致的凉拌冷盘，每一道菜背后都是对那片黑土地的眷恋与热爱。来这里，吃的不只是饭，是故事，是温度。</p>
     <p>🕐 营业时间：11:00 – 21:30　｜　📍 东北风味，暖心暖胃</p>
   </div>
 </section>
@@ -303,7 +311,9 @@
     </div>
     <div class="dish-grid">
       <div class="dish-card">
-        <img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=400&auto=format&fit=crop" alt="溜肉段"/>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1544025162-d76538867990?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/liurou/400/300'" alt="溜肉段"/>
+        </div>
         <div class="dish-info">
           <h4>溜肉段</h4>
           <p>精选猪里脊，裹糊油炸至金黄，酸甜芡汁翻炒，外酥内嫩，东北第一名菜。</p>
@@ -311,7 +321,9 @@
         </div>
       </div>
       <div class="dish-card">
-        <img src="https://images.unsplash.com/photo-1562802378-063ec186a863?w=400&auto=format&fit=crop" alt="锅包肉"/>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/guobao/400/300'" alt="锅包肉"/>
+        </div>
         <div class="dish-info">
           <h4>锅包肉</h4>
           <p>哈尔滨老字号做法，二次油炸锁住肉汁，浇上秘制番茄汁，香脆爽口。</p>
@@ -319,7 +331,9 @@
         </div>
       </div>
       <div class="dish-card">
-        <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&auto=format&fit=crop" alt="小鸡炖蘑菇"/>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/jigu/400/300'" alt="小鸡炖蘑菇"/>
+        </div>
         <div class="dish-info">
           <h4>小鸡炖蘑菇</h4>
           <p>散养农家土鸡配长白山野生榛蘑，文火慢炖两小时，汤鲜味浓。</p>
@@ -337,7 +351,9 @@
     </div>
     <div class="dish-grid">
       <div class="dish-card">
-        <img src="https://images.unsplash.com/photo-1625938145744-533610fc6f5d?w=400&auto=format&fit=crop" alt="黑胡椒螃蟹"/>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/crab/400/300'" alt="黑胡椒螃蟹"/>
+        </div>
         <div class="dish-info">
           <h4>黑胡椒螃蟹</h4>
           <p>鲜活大闸蟹现杀现炒，黑胡椒与黄油完美融合，鲜辣霸道，令人欲罢不能。</p>
@@ -345,7 +361,9 @@
         </div>
       </div>
       <div class="dish-card">
-        <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&auto=format&fit=crop" alt="京酱肉丝"/>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1551248429-40975aa4de74?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/jingjiang/400/300'" alt="京酱肉丝"/>
+        </div>
         <div class="dish-info">
           <h4>京酱肉丝</h4>
           <p>精选猪里脊细切成丝，甜面酱慢炒上色，配豆皮卷食，咸鲜下饭。</p>
@@ -353,7 +371,9 @@
         </div>
       </div>
       <div class="dish-card">
-        <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&auto=format&fit=crop" alt="地三鲜"/>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/disanxian/400/300'" alt="地三鲜"/>
+        </div>
         <div class="dish-info">
           <h4>地三鲜</h4>
           <p>茄子、土豆、青椒三种当季蔬菜，大火爆炒，家常酱香，素食首选。</p>
@@ -371,7 +391,9 @@
     </div>
     <div class="dish-grid">
       <div class="dish-card">
-        <img src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?w=400&auto=format&fit=crop" alt="豆角排骨"/>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/dougiao/400/300'" alt="豆角排骨"/>
+        </div>
         <div class="dish-info">
           <h4>豆角排骨</h4>
           <p>东北宽豆角搭配猪肋排，铁锅慢炖入味，豆角软烂吸满肉汁，越嚼越香。</p>
@@ -379,7 +401,9 @@
         </div>
       </div>
       <div class="dish-card">
-        <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&auto=format&fit=crop" alt="猪肉炖粉条"/>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/fengtiao/400/300'" alt="猪肉炖粉条"/>
+        </div>
         <div class="dish-info">
           <h4>猪肉炖粉条</h4>
           <p>五花肉与红薯宽粉条同炖，肥而不腻，粉条晶莹透亮、软糯弹牙。</p>
@@ -387,7 +411,9 @@
         </div>
       </div>
       <div class="dish-card">
-        <img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=400&auto=format&fit=crop" alt="鲇鱼炖茄子"/>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/nianyu/400/300'" alt="鲇鱼炖茄子"/>
+        </div>
         <div class="dish-info">
           <h4>鲇鱼炖茄子</h4>
           <p>新鲜河鲇鱼与嫩茄子同炖，鱼肉细嫩，茄子吸足鱼鲜，汤汁浓白鲜美。</p>
@@ -405,7 +431,9 @@
     </div>
     <div class="dish-grid">
       <div class="dish-card">
-        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&auto=format&fit=crop" alt="东北大拉皮"/>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1543362906-acfc16c67564?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/lapi/400/300'" alt="东北大拉皮"/>
+        </div>
         <div class="dish-info">
           <h4>东北大拉皮</h4>
           <p>宽透明粉皮配黄瓜、胡萝卜、香菜，淋上芝麻酱与蒜汁，爽滑开胃。</p>
@@ -413,7 +441,9 @@
         </div>
       </div>
       <div class="dish-card">
-        <img src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=400&auto=format&fit=crop" alt="拍黄瓜"/>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/huanggua/400/300'" alt="拍黄瓜"/>
+        </div>
         <div class="dish-info">
           <h4>拍黄瓜</h4>
           <p>现拍新鲜黄瓜，蒜末、陈醋、辣椒油调拌，清脆爽口，开胃解腻。</p>
@@ -421,7 +451,9 @@
         </div>
       </div>
       <div class="dish-card">
-        <img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=400&auto=format&fit=crop" alt="皮蛋豆腐"/>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/doufu/400/300'" alt="皮蛋豆腐"/>
+        </div>
         <div class="dish-info">
           <h4>皮蛋豆腐</h4>
           <p>嫩滑日本豆腐配溏心皮蛋，淋上秘制葱油酱汁，细腻鲜嫩，回味悠长。</p>
@@ -439,7 +471,9 @@
     </div>
     <div class="dish-grid">
       <div class="dish-card">
-        <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&auto=format&fit=crop" alt="玉米饼子"/>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/yumi/400/300'" alt="玉米饼子"/>
+        </div>
         <div class="dish-info">
           <h4>玉米饼子</h4>
           <p>传统东北石磨玉米面，贴锅烙制，外焦里软，香甜质朴，越嚼越甜。</p>
@@ -447,7 +481,9 @@
         </div>
       </div>
       <div class="dish-card">
-        <img src="https://images.unsplash.com/photo-1536304993881-ff86e0c9c77a?w=400&auto=format&fit=crop" alt="东北大米饭"/>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1536304993881-ff86e0c9c77a?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/mifan/400/300'" alt="东北大米饭"/>
+        </div>
         <div class="dish-info">
           <h4>东北大米饭</h4>
           <p>五常稻花香大米，颗粒饱满，清香扑鼻，粒粒分明，百搭所有菜肴。</p>
@@ -461,10 +497,10 @@
 
 <!-- FOOTER -->
 <footer id="footer">
-  <strong>大东北 · 王哥私房菜</strong><br/>
-  正宗东北风味 · 私房秘制 · 用心做好每一道菜<br/>
+  <strong>大东北 -- 永远的土</strong><br/>
+  正宗东北风味 · 永远的土地 · 用心做好每一道菜<br/>
   营业时间：11:00 – 21:30 &nbsp;|&nbsp; 每日新鲜食材，限量供应<br/><br/>
-  <span style="color:#5a4a3a">© 2026 大东北 王哥私房菜. All rights reserved.</span>
+  <span style="color:#5a4a3a">© 2026 大东北 -- 永远的土. All rights reserved.</span>
 </footer>
 
 </body>
