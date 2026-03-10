@@ -1,29 +1,471 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>fivemeepo</title>
+  <title>大东北 · 王哥私房菜</title>
   <style>
+    :root {
+      --red: #c0392b;
+      --gold: #d4a017;
+      --dark: #1a0a00;
+      --cream: #fdf6ec;
+      --card-bg: #fff;
+      --text: #2c1a00;
+      --muted: #7a6a58;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #0d1117;
-      color: #e6edf3;
-      min-height: 100vh;
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--cream);
+      color: var(--text);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(26, 10, 0, 0.95);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+    }
+    nav .brand {
+      color: var(--gold);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.8rem;
+    }
+    nav ul a {
+      color: #e8d9c5;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 520px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background:
+        linear-gradient(to bottom, rgba(26,10,0,0.55) 0%, rgba(26,10,0,0.75) 100%),
+        url("https://images.unsplash.com/photo-1563245372-f21724e3856d?w=1400&auto=format&fit=crop") center/cover no-repeat;
     }
-    h1 { font-size: 3rem; margin-bottom: 0.5rem; }
-    p { color: #8b949e; font-size: 1.1rem; }
-    a { color: #58a6ff; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      padding: 0.3rem 1rem;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      color: #fff;
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero p {
+      margin-top: 1rem;
+      color: #e8d9c5;
+      font-size: 1.05rem;
+      max-width: 480px;
+      line-height: 1.7;
+    }
+    .hero-btn {
+      margin-top: 2rem;
+      padding: 0.75rem 2.2rem;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .hero-btn:hover { background: #a93226; }
+
+    /* ── INTRO ── */
+    .intro {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      max-width: 1100px;
+      margin: 5rem auto;
+      padding: 0 2rem;
+    }
+    .intro img {
+      width: 420px;
+      border-radius: 8px;
+      object-fit: cover;
+      aspect-ratio: 4/3;
+      flex-shrink: 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    }
+    .intro-text h2 {
+      font-size: 1.9rem;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+    .intro-text h2 em {
+      color: var(--red);
+      font-style: normal;
+    }
+    .intro-text p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+    }
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--gold);
+      margin: 1rem 0;
+      border-radius: 2px;
+    }
+
+    /* ── MENU ── */
+    .menu-section {
+      max-width: 1100px;
+      margin: 0 auto 5rem;
+      padding: 0 2rem;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .section-header .label {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .section-header h2 {
+      font-size: 2rem;
+      margin-top: 0.3rem;
+      color: var(--dark);
+    }
+
+    .category { margin-bottom: 3.5rem; }
+    .category-title {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+    .category-title h3 {
+      font-size: 1.3rem;
+      color: var(--dark);
+      white-space: nowrap;
+    }
+    .category-title .cat-en {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    .category-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #e0d4c0;
+    }
+
+    .dish-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.4rem;
+    }
+    .dish-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .dish-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    .dish-card img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+    }
+    .dish-info {
+      padding: 1rem;
+    }
+    .dish-info h4 {
+      font-size: 1rem;
+      color: var(--dark);
+      margin-bottom: 0.3rem;
+    }
+    .dish-info p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 0.6rem;
+    }
+    .dish-price {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--red);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: #8a7a6a;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      font-size: 0.85rem;
+      line-height: 1.9;
+    }
+    footer strong { color: var(--gold); }
+
+    @media (max-width: 700px) {
+      .intro { flex-direction: column; }
+      .intro img { width: 100%; }
+      nav ul { gap: 1rem; }
+    }
   </style>
 </head>
 <body>
-  <h1>fivemeepo</h1>
-  <p>Welcome to my site. Find me on <a href="https://github.com/fivemeepo" target="_blank">GitHub</a>.</p>
+
+<!-- NAV -->
+<nav>
+  <div class="brand">大东北 · 王哥私房菜</div>
+  <ul>
+    <li><a href="#intro">关于我们</a></li>
+    <li><a href="#menu">菜单</a></li>
+    <li><a href="#footer">联系我们</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">正宗东北风味 · 私房秘制</div>
+  <h1>大东北<br/><span>王哥私房菜</span></h1>
+  <p>源自白山黑水间的家乡味道，用心烹饪每一道菜，让每一口都是回忆。</p>
+  <a href="#menu" class="hero-btn">查看菜单</a>
+</section>
+
+<!-- INTRO -->
+<section class="intro" id="intro">
+  <img
+    src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800&auto=format&fit=crop"
+    alt="王哥私房菜"
+  />
+  <div class="intro-text">
+    <h2>一口东北味，<em>一份家乡情</em></h2>
+    <div class="divider"></div>
+    <p>王哥私房菜扎根东北饮食文化，精选来自长白山脉与松嫩平原的新鲜食材，将一代代传承的东北家常菜以私房秘制手法重新演绎。</p>
+    <p>无论是豪迈的铁锅炖，还是精致的凉拌冷盘，每一道菜背后都是王哥对家乡味道的执念与热爱。来这里，吃的不只是饭，是故事，是温度。</p>
+    <p>🕐 营业时间：11:00 – 21:30　｜　📍 东北风味，暖心暖胃</p>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="section-header">
+    <div class="label">Our Menu</div>
+    <h2>精选菜单</h2>
+  </div>
+
+  <!-- 招牌菜 -->
+  <div class="category">
+    <div class="category-title">
+      <h3>招牌菜</h3>
+      <span class="cat-en">Signature Dishes</span>
+    </div>
+    <div class="dish-grid">
+      <div class="dish-card">
+        <img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=400&auto=format&fit=crop" alt="溜肉段"/>
+        <div class="dish-info">
+          <h4>溜肉段</h4>
+          <p>精选猪里脊，裹糊油炸至金黄，酸甜芡汁翻炒，外酥内嫩，东北第一名菜。</p>
+          <div class="dish-price">¥58</div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img src="https://images.unsplash.com/photo-1562802378-063ec186a863?w=400&auto=format&fit=crop" alt="锅包肉"/>
+        <div class="dish-info">
+          <h4>锅包肉</h4>
+          <p>哈尔滨老字号做法，二次油炸锁住肉汁，浇上秘制番茄汁，香脆爽口。</p>
+          <div class="dish-price">¥52</div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&auto=format&fit=crop" alt="小鸡炖蘑菇"/>
+        <div class="dish-info">
+          <h4>小鸡炖蘑菇</h4>
+          <p>散养农家土鸡配长白山野生榛蘑，文火慢炖两小时，汤鲜味浓。</p>
+          <div class="dish-price">¥78</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 热炒 -->
+  <div class="category">
+    <div class="category-title">
+      <h3>热炒</h3>
+      <span class="cat-en">Stir-fry</span>
+    </div>
+    <div class="dish-grid">
+      <div class="dish-card">
+        <img src="https://images.unsplash.com/photo-1625938145744-533610fc6f5d?w=400&auto=format&fit=crop" alt="黑胡椒螃蟹"/>
+        <div class="dish-info">
+          <h4>黑胡椒螃蟹</h4>
+          <p>鲜活大闸蟹现杀现炒，黑胡椒与黄油完美融合，鲜辣霸道，令人欲罢不能。</p>
+          <div class="dish-price">¥98</div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&auto=format&fit=crop" alt="京酱肉丝"/>
+        <div class="dish-info">
+          <h4>京酱肉丝</h4>
+          <p>精选猪里脊细切成丝，甜面酱慢炒上色，配豆皮卷食，咸鲜下饭。</p>
+          <div class="dish-price">¥48</div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&auto=format&fit=crop" alt="地三鲜"/>
+        <div class="dish-info">
+          <h4>地三鲜</h4>
+          <p>茄子、土豆、青椒三种当季蔬菜，大火爆炒，家常酱香，素食首选。</p>
+          <div class="dish-price">¥38</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 炖菜 -->
+  <div class="category">
+    <div class="category-title">
+      <h3>炖菜</h3>
+      <span class="cat-en">Stewed Dishes</span>
+    </div>
+    <div class="dish-grid">
+      <div class="dish-card">
+        <img src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?w=400&auto=format&fit=crop" alt="豆角排骨"/>
+        <div class="dish-info">
+          <h4>豆角排骨</h4>
+          <p>东北宽豆角搭配猪肋排，铁锅慢炖入味，豆角软烂吸满肉汁，越嚼越香。</p>
+          <div class="dish-price">¥72</div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&auto=format&fit=crop" alt="猪肉炖粉条"/>
+        <div class="dish-info">
+          <h4>猪肉炖粉条</h4>
+          <p>五花肉与红薯宽粉条同炖，肥而不腻，粉条晶莹透亮、软糯弹牙。</p>
+          <div class="dish-price">¥65</div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=400&auto=format&fit=crop" alt="鲇鱼炖茄子"/>
+        <div class="dish-info">
+          <h4>鲇鱼炖茄子</h4>
+          <p>新鲜河鲇鱼与嫩茄子同炖，鱼肉细嫩，茄子吸足鱼鲜，汤汁浓白鲜美。</p>
+          <div class="dish-price">¥78</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 凉菜 -->
+  <div class="category">
+    <div class="category-title">
+      <h3>凉菜</h3>
+      <span class="cat-en">Cold Dishes</span>
+    </div>
+    <div class="dish-grid">
+      <div class="dish-card">
+        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&auto=format&fit=crop" alt="东北大拉皮"/>
+        <div class="dish-info">
+          <h4>东北大拉皮</h4>
+          <p>宽透明粉皮配黄瓜、胡萝卜、香菜，淋上芝麻酱与蒜汁，爽滑开胃。</p>
+          <div class="dish-price">¥32</div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=400&auto=format&fit=crop" alt="拍黄瓜"/>
+        <div class="dish-info">
+          <h4>拍黄瓜</h4>
+          <p>现拍新鲜黄瓜，蒜末、陈醋、辣椒油调拌，清脆爽口，开胃解腻。</p>
+          <div class="dish-price">¥18</div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=400&auto=format&fit=crop" alt="皮蛋豆腐"/>
+        <div class="dish-info">
+          <h4>皮蛋豆腐</h4>
+          <p>嫩滑日本豆腐配溏心皮蛋，淋上秘制葱油酱汁，细腻鲜嫩，回味悠长。</p>
+          <div class="dish-price">¥22</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主食 -->
+  <div class="category">
+    <div class="category-title">
+      <h3>主食</h3>
+      <span class="cat-en">Staples</span>
+    </div>
+    <div class="dish-grid">
+      <div class="dish-card">
+        <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&auto=format&fit=crop" alt="玉米饼子"/>
+        <div class="dish-info">
+          <h4>玉米饼子</h4>
+          <p>传统东北石磨玉米面，贴锅烙制，外焦里软，香甜质朴，越嚼越甜。</p>
+          <div class="dish-price">¥12</div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img src="https://images.unsplash.com/photo-1536304993881-ff86e0c9c77a?w=400&auto=format&fit=crop" alt="东北大米饭"/>
+        <div class="dish-info">
+          <h4>东北大米饭</h4>
+          <p>五常稻花香大米，颗粒饱满，清香扑鼻，粒粒分明，百搭所有菜肴。</p>
+          <div class="dish-price">¥5</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <strong>大东北 · 王哥私房菜</strong><br/>
+  正宗东北风味 · 私房秘制 · 用心做好每一道菜<br/>
+  营业时间：11:00 – 21:30 &nbsp;|&nbsp; 每日新鲜食材，限量供应<br/><br/>
+  <span style="color:#5a4a3a">© 2026 大东北 王哥私房菜. All rights reserved.</span>
+</footer>
+
 </body>
 </html>
