@@ -28,40 +28,6 @@
       color: var(--ink);
     }
 
-    /* ── NAV ── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(30, 22, 10, 0.96);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2.5rem;
-      height: 62px;
-    }
-    nav .brand {
-      color: #c8a96e;
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-decoration: none;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
-    nav ul a {
-      color: #d8c9b0;
-      text-decoration: none;
-      font-size: 0.82rem;
-      letter-spacing: 0.12em;
-      transition: color 0.2s;
-    }
-    nav ul a:hover, nav ul a.active { color: #c8a96e; }
-
     /* ── HERO ── */
     .hero {
       background: var(--ivory);
@@ -97,7 +63,6 @@
       font-weight: 300;
     }
 
-    /* ── HERO IMAGE ── */
     .hero-image {
       max-width: 760px;
       margin: 4rem auto 0;
@@ -133,8 +98,6 @@
       align-items: start;
     }
 
-    /* LEFT — info */
-    .info-block { }
     .info-eyebrow {
       font-size: 0.68rem;
       letter-spacing: 0.26em;
@@ -150,20 +113,9 @@
       margin-bottom: 0.3rem;
       line-height: 1.2;
     }
-    .info-block h2 em {
-      font-style: italic;
-      font-weight: 400;
-      color: var(--accent);
-    }
-    .info-divider {
-      width: 40px;
-      height: 1px;
-      background: var(--gold);
-      margin: 1.4rem 0;
-    }
-    .info-item {
-      margin-bottom: 2rem;
-    }
+    .info-block h2 em { font-style: italic; font-weight: 400; color: var(--accent); }
+    .info-divider { width: 40px; height: 1px; background: var(--gold); margin: 1.4rem 0; }
+    .info-item { margin-bottom: 2rem; }
     .info-item .label {
       font-size: 0.68rem;
       letter-spacing: 0.2em;
@@ -181,7 +133,6 @@
     }
     .info-item a:hover { color: var(--accent); }
 
-    /* RIGHT — form */
     .form-eyebrow {
       font-size: 0.68rem;
       letter-spacing: 0.26em;
@@ -196,29 +147,11 @@
       color: var(--dark);
       margin-bottom: 0.3rem;
     }
-    .contact-form h3 em {
-      font-style: italic;
-      font-weight: 400;
-      color: var(--accent);
-    }
-    .form-divider {
-      width: 40px;
-      height: 1px;
-      background: var(--gold);
-      margin: 1.4rem 0 2rem;
-    }
+    .contact-form h3 em { font-style: italic; font-weight: 400; color: var(--accent); }
+    .form-divider { width: 40px; height: 1px; background: var(--gold); margin: 1.4rem 0 2rem; }
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      margin-bottom: 1.2rem;
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 1.2rem;
-    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem; }
+    .form-group { display: flex; flex-direction: column; margin-bottom: 1.2rem; }
     .form-group label {
       font-size: 0.68rem;
       letter-spacing: 0.18em;
@@ -226,9 +159,7 @@
       text-transform: uppercase;
       margin-bottom: 0.5rem;
     }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
+    .form-group input, .form-group select, .form-group textarea {
       background: var(--ivory);
       border: 1px solid var(--line);
       border-radius: 1px;
@@ -240,15 +171,8 @@
       transition: border-color 0.2s;
       font-weight: 300;
     }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--gold);
-    }
-    .form-group textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
     .form-group select {
       appearance: none;
       cursor: pointer;
@@ -272,17 +196,10 @@
       border-radius: 1px;
       margin-top: 0.5rem;
     }
-    .form-submit:hover {
-      background: var(--accent);
-      color: var(--ivory);
-    }
+    .form-submit:hover { background: var(--accent); color: var(--ivory); }
 
-    /* ── HOURS STRIP ── */
-    .hours-strip {
-      background: var(--ivory2);
-      padding: 5rem 2rem;
-      text-align: center;
-    }
+    /* ── HOURS ── */
+    .hours-strip { background: var(--ivory2); padding: 5rem 2rem; text-align: center; }
     .hours-eyebrow {
       font-size: 0.72rem;
       letter-spacing: 0.28em;
@@ -290,51 +207,15 @@
       text-transform: uppercase;
       margin-bottom: 2.5rem;
     }
-    .hours-grid {
-      display: flex;
-      justify-content: center;
-      gap: 5rem;
-      flex-wrap: wrap;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .hours-col .day {
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-    .hours-col .time {
-      font-family: "Playfair Display", serif;
-      font-size: 1.4rem;
-      color: var(--dark);
-      font-style: italic;
-    }
-    .hours-col .note {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 0.3rem;
-      font-weight: 300;
-    }
+    .hours-grid { display: flex; justify-content: center; gap: 5rem; flex-wrap: wrap; max-width: 800px; margin: 0 auto; }
+    .hours-col .day { font-size: 0.72rem; letter-spacing: 0.18em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .hours-col .time { font-family: "Playfair Display", serif; font-size: 1.4rem; color: var(--dark); font-style: italic; }
+    .hours-col .note { font-size: 0.78rem; color: var(--muted); margin-top: 0.3rem; font-weight: 300; }
 
     /* ── QUOTE ── */
-    .quote-section {
-      background: var(--dark);
-      padding: 7rem 2rem;
-      text-align: center;
-    }
-    .quote-section blockquote {
-      max-width: 680px;
-      margin: 0 auto;
-    }
-    .quote-section .q-eyebrow {
-      font-size: 0.7rem;
-      letter-spacing: 0.26em;
-      color: #a07830;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-    }
+    .quote-section { background: var(--dark); padding: 7rem 2rem; text-align: center; }
+    .quote-section blockquote { max-width: 680px; margin: 0 auto; }
+    .quote-section .q-eyebrow { font-size: 0.7rem; letter-spacing: 0.26em; color: #a07830; text-transform: uppercase; margin-bottom: 2rem; }
     .quote-section blockquote p {
       font-family: "Playfair Display", serif;
       font-style: italic;
@@ -343,16 +224,8 @@
       line-height: 1.7;
       margin-bottom: 1.8rem;
     }
-    .quote-section blockquote cite {
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      color: #a07830;
-      text-transform: uppercase;
-      font-style: normal;
-    }
-    .quote-cta {
-      margin-top: 3rem;
-    }
+    .quote-section blockquote cite { font-size: 0.72rem; letter-spacing: 0.2em; color: #a07830; text-transform: uppercase; font-style: normal; }
+    .quote-cta { margin-top: 3rem; }
     .quote-cta a {
       display: inline-block;
       padding: 0.9rem 2.8rem;
@@ -365,60 +238,28 @@
       transition: background 0.25s, color 0.25s;
       border-radius: 1px;
     }
-    .quote-cta a:hover {
-      background: #a07830;
-      color: var(--dark);
-    }
+    .quote-cta a:hover { background: #a07830; color: var(--dark); }
 
     /* ── FOOTER ── */
-    footer {
-      background: #120c04;
-      color: #6b5a42;
-      text-align: center;
-      padding: 2.5rem 1rem;
-      font-size: 0.8rem;
-      line-height: 1.9;
-    }
+    footer { background: #120c04; color: #6b5a42; text-align: center; padding: 2.5rem 1rem; font-size: 0.8rem; line-height: 1.9; }
     footer strong { color: #c8a96e; }
     footer a { color: #9a7a48; text-decoration: none; }
     footer a:hover { color: #c8a96e; }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 780px) {
-      .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
       .form-row { grid-template-columns: 1fr; }
-      nav ul { gap: 1rem; }
-      nav ul a { font-size: 0.75rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="index.html" class="brand">大东北 -- 王哥私房菜</a>
-  <ul>
-    <li><a href="index.html#menu">菜单</a></li>
-    <li><a href="about.html">关于王哥</a></li>
-    <li><a href="contact.html" class="active">联系王哥</a></li>
-  </ul>
-</nav>
+<div id="nav-root"></div>
 
-<!-- HERO -->
 <section class="hero">
   <div class="eyebrow">预约与垂询</div>
-  <h1>
-    与王哥相约
-    <em>一桌难求，值得等待</em>
-  </h1>
-  <p class="lead">
-    大东北私房菜每日限定十二桌，食材皆为当日清晨采购。
-    无论是家宴、商务聚餐，还是一次说走就走的口腹之旅，
-    欢迎提前与我们联系，王哥期待与您相聚。
-  </p>
+  <h1>与王哥相约<em>一桌难求，值得等待</em></h1>
+  <p class="lead">大东北私房菜每日限定十二桌，食材皆为当日清晨采购。无论是家宴、商务聚餐，还是一次说走就走的口腹之旅，欢迎提前与我们联系，王哥期待与您相聚。</p>
 </section>
 
 <div class="hero-image">
@@ -431,108 +272,73 @@
 
 <div class="divider-monogram">— 王 —</div>
 
-<!-- INFO + FORM -->
 <section class="contact-body">
   <div class="contact-grid">
-
-    <!-- LEFT: Info -->
     <div class="info-block">
       <div class="info-eyebrow">找到我们</div>
       <h2>王哥在这里<br/><em>恭候您的光临</em></h2>
       <div class="info-divider"></div>
-
       <div class="info-item">
         <div class="label">餐厅地址</div>
         <p>辽宁省沈阳市铁西区<br/>建设大路 88 号，大东北私房菜馆</p>
       </div>
-
       <div class="info-item">
         <div class="label">预约电话</div>
         <a href="tel:+862488888888">024 - 8888 - 8888</a>
         <p style="font-size:0.78rem;color:var(--muted);margin-top:0.3rem;">每日 09:00 – 21:00 接听</p>
       </div>
-
       <div class="info-item">
         <div class="label">微信公众号</div>
-        <p>大东北王哥私房菜<br/>
-          <span style="font-size:0.8rem;color:var(--muted);">扫码关注，在线预约更便捷</span>
-        </p>
+        <p>大东北王哥私房菜<br/><span style="font-size:0.8rem;color:var(--muted);">扫码关注，在线预约更便捷</span></p>
       </div>
-
       <div class="info-item">
         <div class="label">电子邮件</div>
         <a href="mailto:wangge@ddbgsfcai.com">wangge@ddbgsfcai.com</a>
       </div>
-
       <div class="info-item">
         <div class="label">注意事项</div>
-        <p>每日限定 12 桌 · 建议提前 3 日预约<br/>
-        如遇特殊节日，请提前 7 日联系<br/>
-        恕不接受当日 walk-in</p>
+        <p>每日限定 12 桌 · 建议提前 3 日预约<br/>如遇特殊节日，请提前 7 日联系<br/>恕不接受当日 walk-in</p>
       </div>
     </div>
 
-    <!-- RIGHT: Form -->
     <div class="contact-form">
       <div class="form-eyebrow">在线预约</div>
       <h3>留下您的信息<br/><em>王哥亲自回复</em></h3>
       <div class="form-divider"></div>
-
       <form onsubmit="handleSubmit(event)">
         <div class="form-row">
-          <div class="form-group">
-            <label>姓名</label>
-            <input type="text" placeholder="您的称呼" required />
-          </div>
-          <div class="form-group">
-            <label>联系电话</label>
-            <input type="tel" placeholder="方便联系的号码" required />
-          </div>
+          <div class="form-group"><label>姓名</label><input type="text" placeholder="您的称呼" required /></div>
+          <div class="form-group"><label>联系电话</label><input type="tel" placeholder="方便联系的号码" required /></div>
         </div>
-
         <div class="form-row">
-          <div class="form-group">
-            <label>期望日期</label>
-            <input type="date" />
-          </div>
+          <div class="form-group"><label>期望日期</label><input type="date" /></div>
           <div class="form-group">
             <label>用餐人数</label>
             <select>
               <option value="">请选择</option>
-              <option>2 人</option>
-              <option>3 – 4 人</option>
-              <option>5 – 6 人</option>
-              <option>7 – 10 人</option>
-              <option>10 人以上（包厢）</option>
+              <option>2 人</option><option>3 – 4 人</option><option>5 – 6 人</option>
+              <option>7 – 10 人</option><option>10 人以上（包厢）</option>
             </select>
           </div>
         </div>
-
         <div class="form-group">
           <label>用餐场合</label>
           <select>
             <option value="">请选择</option>
-            <option>家庭聚餐</option>
-            <option>商务宴请</option>
-            <option>生日庆典</option>
-            <option>朋友小聚</option>
-            <option>其他</option>
+            <option>家庭聚餐</option><option>商务宴请</option><option>生日庆典</option>
+            <option>朋友小聚</option><option>其他</option>
           </select>
         </div>
-
         <div class="form-group">
           <label>特别备注</label>
           <textarea placeholder="过敏食材、口味偏好、特殊需求……王哥都会用心安排"></textarea>
         </div>
-
         <button type="submit" class="form-submit">提交预约</button>
       </form>
     </div>
-
   </div>
 </section>
 
-<!-- HOURS -->
 <section class="hours-strip">
   <div class="hours-eyebrow">营业时间</div>
   <div class="hours-grid">
@@ -554,23 +360,15 @@
   </div>
 </section>
 
-<!-- QUOTE -->
 <section class="quote-section">
   <div class="q-eyebrow">王哥说</div>
   <blockquote>
-    <p>
-      "客人到了，就是家人到了。<br/>
-      每一桌，我都亲自把关；<br/>
-      每一口，都不能辜负。"
-    </p>
+    <p>"客人到了，就是家人到了。<br/>每一桌，我都亲自把关；<br/>每一口，都不能辜负。"</p>
     <cite>— 王哥</cite>
   </blockquote>
-  <div class="quote-cta">
-    <a href="index.html#menu">先看看菜单</a>
-  </div>
+  <div class="quote-cta"><a href="index.html#menu">先看看菜单</a></div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <strong>大东北 -- 永远的土</strong><br/>
   正宗东北风味 · 米其木木三星 · 用心做好每一道菜<br/>
@@ -582,13 +380,13 @@
 <script>
   function handleSubmit(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('.form-submit');
+    var btn = e.target.querySelector('.form-submit');
     btn.textContent = '已收到，王哥会尽快联系您 ✓';
     btn.style.background = '#7a5c2e';
     btn.style.color = '#f4efe8';
     btn.disabled = true;
   }
 </script>
-
+<script src="nav.js"></script>
 </body>
 </html>
