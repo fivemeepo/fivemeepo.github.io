@@ -128,11 +128,68 @@
       box-shadow: 0 2px 12px rgba(0,0,0,0.07); transition: transform 0.2s, box-shadow 0.2s;
     }
     .dish-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
-    .dish-card .img-wrap {
-      width: 100%; aspect-ratio: 4/3; overflow: hidden;
+
+    /* ── CAROUSEL ── */
+    .img-wrap {
+      width: 100%; aspect-ratio: 4/3; overflow: hidden; position: relative;
       background: linear-gradient(135deg, #c0392b 0%, #d4a017 100%);
     }
-    .dish-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* Multi-image carousel */
+    .img-wrap.carousel { overflow: hidden; }
+    .carousel-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.35s ease;
+    }
+    .carousel-track img {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.45);
+      color: #fff;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 2;
+    }
+    .img-wrap.carousel:hover .carousel-btn { opacity: 1; }
+    .carousel-btn.prev { left: 6px; }
+    .carousel-btn.next { right: 6px; }
+    .carousel-dots {
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 5px;
+      z-index: 2;
+    }
+    .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .dot.active { background: #fff; }
+
     .dish-info { padding: 1rem; }
     .dish-info h4 { font-size: 1rem; color: var(--dark); margin-bottom: 0.3rem; }
     .dish-info p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.6rem; }
@@ -188,49 +245,216 @@
     <h2>精选菜单</h2>
   </div>
 
+  <!-- 招牌菜 -->
   <div class="category">
     <div class="category-title"><h3>招牌菜</h3><span class="cat-en">Signature Dishes</span></div>
     <div class="dish-grid">
-      <div class="dish-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/liurou/400/300'" alt="溜肉段"/></div><div class="dish-info"><h4>溜肉段</h4><p>精选猪里脊，裹糊油炸至金黄，酸甜芡汁翻炒，外酥内嫩，东北第一名菜。</p><div class="dish-price">¥58</div></div></div>
-      <div class="dish-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1562802378-063ec186a863?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/guobao/400/300'" alt="锅包肉"/></div><div class="dish-info"><h4>锅包肉</h4><p>哈尔滨老字号做法，二次油炸锁住肉汁，浇上秘制番茄汁，香脆爽口。</p><div class="dish-price">¥52</div></div></div>
-      <div class="dish-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/jigu/400/300'" alt="小鸡炖蘑菇"/></div><div class="dish-info"><h4>小鸡炖蘑菇</h4><p>散养农家土鸡配长白山野生榛蘑，文火慢炖两小时，汤鲜味浓。</p><div class="dish-price">¥78</div></div></div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/王哥招牌溜肉段.jpg" alt="王哥招牌溜肉段"/></div>
+        <div class="dish-info"><h4>王哥招牌溜肉段</h4><p>精选猪里脊，裹糊油炸至金黄，酸甜芡汁翻炒，外酥内嫩，东北第一名菜。</p><div class="dish-price">¥68</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/黑胡椒螃蟹.jpg" alt="黑胡椒螃蟹"/></div>
+        <div class="dish-info"><h4>黑胡椒螃蟹</h4><p>鲜活大闸蟹现杀现炒，黑胡椒与黄油完美融合，鲜辣霸道，令人欲罢不能。</p><div class="dish-price">¥98</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/秘制酱猪蹄.jpg" alt="秘制酱猪蹄"/></div>
+        <div class="dish-info"><h4>秘制酱猪蹄</h4><p>王哥独家酱汁腌制，文火慢卤四小时，皮糯骨香，胶质丰盈，一口难忘。</p><div class="dish-price">¥78</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/金城炸鸡架.jpg" alt="金城炸鸡架"/></div>
+        <div class="dish-info"><h4>金城炸鸡架</h4><p>锦州金城经典吃法，整鸡架腌制后高温油炸，外皮酥脆，撒椒盐趁热啃，下酒神器。</p><div class="dish-price">¥48</div></div>
+      </div>
     </div>
   </div>
 
+  <!-- 热炒 -->
   <div class="category">
     <div class="category-title"><h3>热炒</h3><span class="cat-en">Stir-fry</span></div>
     <div class="dish-grid">
-      <div class="dish-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1625938145744-533610fc6f5d?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/crab/400/300'" alt="黑胡椒螃蟹"/></div><div class="dish-info"><h4>黑胡椒螃蟹</h4><p>鲜活大闸蟹现杀现炒，黑胡椒与黄油完美融合，鲜辣霸道，令人欲罢不能。</p><div class="dish-price">¥98</div></div></div>
-      <div class="dish-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/jingjiang/400/300'" alt="京酱肉丝"/></div><div class="dish-info"><h4>京酱肉丝</h4><p>精选猪里脊细切成丝，甜面酱慢炒上色，配豆皮卷食，咸鲜下饭。</p><div class="dish-price">¥48</div></div></div>
-      <div class="dish-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/disanxian/400/300'" alt="地三鲜"/></div><div class="dish-info"><h4>地三鲜</h4><p>茄子、土豆、青椒三种当季蔬菜，大火爆炒，家常酱香，素食首选。</p><div class="dish-price">¥38</div></div></div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/京酱肉丝.jpg" alt="京酱肉丝"/></div>
+        <div class="dish-info"><h4>京酱肉丝</h4><p>精选猪里脊细切成丝，甜面酱慢炒上色，配豆皮卷食，咸鲜下饭。</p><div class="dish-price">¥48</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/蒜薹炒肉.jpg" alt="蒜薹炒肉"/></div>
+        <div class="dish-info"><h4>蒜薹炒肉</h4><p>时令蒜薹配五花肉片，大火快炒，蒜香浓郁，肉片鲜嫩，经典家常味。</p><div class="dish-price">¥42</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/辣炒花蛤.jpg" alt="辣炒花蛤"/></div>
+        <div class="dish-info"><h4>辣炒花蛤</h4><p>新鲜花蛤配干辣椒、姜蒜爆炒，鲜咸微辣，汤汁拌饭一绝。</p><div class="dish-price">¥52</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/麻婆豆腐.jpg" alt="麻婆豆腐"/></div>
+        <div class="dish-info"><h4>麻婆豆腐</h4><p>嫩豆腐配牛肉末，花椒麻、辣椒香，麻辣鲜烫，下饭神器，百吃不厌。</p><div class="dish-price">¥36</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/炒土豆丝.jpg" alt="炒土豆丝"/></div>
+        <div class="dish-info"><h4>炒土豆丝</h4><p>现切土豆丝过冰水保持脆爽，葱花爆香下锅翻炒，清脆爽口，家常百搭。</p><div class="dish-price">¥28</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/韭菜炒鸡蛋.jpg" alt="韭菜炒鸡蛋"/></div>
+        <div class="dish-info"><h4>韭菜炒鸡蛋</h4><p>新鲜韭菜配土鸡蛋，旺火翻炒，韭香扑鼻，蛋嫩菜脆，最质朴的东北味道。</p><div class="dish-price">¥28</div></div>
+      </div>
     </div>
   </div>
 
+  <!-- 海鲜 -->
+  <div class="category">
+    <div class="category-title"><h3>海鲜</h3><span class="cat-en">Seafood</span></div>
+    <div class="dish-grid">
+      <div class="dish-card">
+        <div class="img-wrap carousel" data-imgs='["Dishes/麻辣小龙虾.JPG","Dishes/麻辣小龙虾2.jpg"]'>
+          <div class="carousel-track">
+            <img src="Dishes/麻辣小龙虾.JPG" alt="麻辣小龙虾"/>
+            <img src="Dishes/麻辣小龙虾2.jpg" alt="麻辣小龙虾"/>
+          </div>
+          <button class="carousel-btn prev">‹</button>
+          <button class="carousel-btn next">›</button>
+          <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span></div>
+        </div>
+        <div class="dish-info"><h4>麻辣小龙虾</h4><p>鲜活龙虾配十三香秘制料，麻辣鲜香，虾肉饱满弹牙，夏夜必备。</p><div class="dish-price">¥128</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/油焖大虾.JPG" alt="油焖大虾"/></div>
+        <div class="dish-info"><h4>油焖大虾</h4><p>渤海鲜虾焖制，虾壳红亮油润，汤汁浓厚鲜甜，虾肉紧实，鲜味十足。</p><div class="dish-price">¥88</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/红烧大虾.jpg" alt="红烧大虾"/></div>
+        <div class="dish-info"><h4>红烧大虾</h4><p>大明虾红烧入味，色泽红亮，酱香浓郁，虾壳可食，鲜甜下饭。</p><div class="dish-price">¥78</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/溜虾段.JPG" alt="溜虾段"/></div>
+        <div class="dish-info"><h4>溜虾段</h4><p>大虾切段裹糊油炸，以溜肉段技法烹制，外酥里嫩，鲜香入味，创意之作。</p><div class="dish-price">¥68</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/韭菜虾仁.jpg" alt="韭菜虾仁"/></div>
+        <div class="dish-info"><h4>韭菜虾仁</h4><p>新鲜虾仁配脆嫩韭菜，旺火爆炒，虾仁弹牙，韭香四溢，鲜嫩爽口。</p><div class="dish-price">¥52</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/红烧带鱼.jpg" alt="红烧带鱼"/></div>
+        <div class="dish-info"><h4>红烧带鱼</h4><p>新鲜带鱼煎至两面金黄，红烧收汁，鱼肉细嫩，酱香浓郁，东北家常经典。</p><div class="dish-price">¥58</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 炭烤 -->
+  <div class="category">
+    <div class="category-title"><h3>炭烤</h3><span class="cat-en">Charcoal Grill</span></div>
+    <div class="dish-grid">
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/炭烤牛肋排.jpg" alt="炭烤牛肋排"/></div>
+        <div class="dish-info"><h4>炭烤牛肋排</h4><p>澳洲谷饲牛肋排，炭火慢烤，外焦里嫩，骨肉分离，配秘制蘸料，豪迈过瘾。</p><div class="dish-price">¥138</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/炭烤羊肉.jpg" alt="炭烤羊肉"/></div>
+        <div class="dish-info"><h4>炭烤羊肉</h4><p>内蒙古羔羊肉，炭火炙烤，孜然与辣椒香气扑鼻，外皮微焦，肉质鲜嫩多汁。</p><div class="dish-price">¥98</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/卤牛肉.JPG" alt="卤牛肉"/></div>
+        <div class="dish-info"><h4>卤牛肉</h4><p>选用牛腱子肉，以王哥秘制卤汁慢煮入味，切片摆盘，入口即化，回味悠长。</p><div class="dish-price">¥68</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 炖菜 -->
   <div class="category">
     <div class="category-title"><h3>炖菜</h3><span class="cat-en">Stewed Dishes</span></div>
     <div class="dish-grid">
-      <div class="dish-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/dougjiao/400/300'" alt="豆角排骨"/></div><div class="dish-info"><h4>豆角排骨</h4><p>东北宽豆角搭配猪肋排，铁锅慢炖入味，豆角软烂吸满肉汁，越嚼越香。</p><div class="dish-price">¥72</div></div></div>
-      <div class="dish-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/fengtiao/400/300'" alt="猪肉炖粉条"/></div><div class="dish-info"><h4>猪肉炖粉条</h4><p>五花肉与红薯宽粉条同炖，肥而不腻，粉条晶莹透亮、软糯弹牙。</p><div class="dish-price">¥65</div></div></div>
-      <div class="dish-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/nianyu/400/300'" alt="鲇鱼炖茄子"/></div><div class="dish-info"><h4>鲇鱼炖茄子</h4><p>新鲜河鲇鱼与嫩茄子同炖，鱼肉细嫩，茄子吸足鱼鲜，汤汁浓白鲜美。</p><div class="dish-price">¥78</div></div></div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/豆角排骨.JPG" alt="豆角排骨"/></div>
+        <div class="dish-info"><h4>豆角排骨</h4><p>东北宽豆角搭配猪肋排，铁锅慢炖入味，豆角软烂吸满肉汁，越嚼越香。</p><div class="dish-price">¥72</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/酸菜炒粉.jpg" alt="酸菜炒粉"/></div>
+        <div class="dish-info"><h4>酸菜炒粉</h4><p>东北手工酸菜配宽粉条，五花肉片同炒，酸香开胃，粉条晶莹软糯，下饭绝配。</p><div class="dish-price">¥42</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/西红柿蛋花汤.jpg" alt="西红柿蛋花汤"/></div>
+        <div class="dish-info"><h4>西红柿蛋花汤</h4><p>新鲜西红柿打底，土鸡蛋花漂浮汤中，酸甜鲜美，老少皆宜，暖胃暖心。</p><div class="dish-price">¥22</div></div>
+      </div>
     </div>
   </div>
 
+  <!-- 凉菜 -->
   <div class="category">
     <div class="category-title"><h3>凉菜</h3><span class="cat-en">Cold Dishes</span></div>
     <div class="dish-grid">
-      <div class="dish-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/lapi/400/300'" alt="东北大拉皮"/></div><div class="dish-info"><h4>东北大拉皮</h4><p>宽透明粉皮配黄瓜、胡萝卜、香菜，淋上芝麻酱与蒜汁，爽滑开胃。</p><div class="dish-price">¥32</div></div></div>
-      <div class="dish-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/huanggua/400/300'" alt="拍黄瓜"/></div><div class="dish-info"><h4>拍黄瓜</h4><p>现拍新鲜黄瓜，蒜末、陈醋、辣椒油调拌，清脆爽口，开胃解腻。</p><div class="dish-price">¥18</div></div></div>
-      <div class="dish-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/doufu/400/300'" alt="皮蛋豆腐"/></div><div class="dish-info"><h4>皮蛋豆腐</h4><p>嫩滑日本豆腐配溏心皮蛋，淋上秘制葱油酱汁，细腻鲜嫩，回味悠长。</p><div class="dish-price">¥22</div></div></div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/皮蛋豆腐.jpg" alt="皮蛋豆腐"/></div>
+        <div class="dish-info"><h4>皮蛋豆腐</h4><p>嫩滑豆腐配溏心皮蛋，淋上秘制葱油酱汁，细腻鲜嫩，回味悠长。</p><div class="dish-price">¥22</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/果仁菠菜.JPG" alt="果仁菠菜"/></div>
+        <div class="dish-info"><h4>果仁菠菜</h4><p>鲜嫩菠菜焯水过凉，拌入炸花生米，芝麻酱与蒜汁调味，清爽解腻，素食首选。</p><div class="dish-price">¥28</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/土豆泥.jpg" alt="土豆泥"/></div>
+        <div class="dish-info"><h4>土豆泥</h4><p>东北黄心土豆蒸熟压泥，加黄油与鲜奶调制，绵密香浓，入口即化，童年记忆。</p><div class="dish-price">¥28</div></div>
+      </div>
     </div>
   </div>
 
+  <!-- 主食 -->
   <div class="category">
     <div class="category-title"><h3>主食</h3><span class="cat-en">Staples</span></div>
     <div class="dish-grid">
-      <div class="dish-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/yumi/400/300'" alt="玉米饼子"/></div><div class="dish-info"><h4>玉米饼子</h4><p>传统东北石磨玉米面，贴锅烙制，外焦里软，香甜质朴，越嚼越甜。</p><div class="dish-price">¥12</div></div></div>
-      <div class="dish-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1536304993881-ff86e0c9c77a?w=400&h=300&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://picsum.photos/seed/mifan/400/300'" alt="东北大米饭"/></div><div class="dish-info"><h4>东北大米饭</h4><p>五常稻花香大米，颗粒饱满，清香扑鼻，粒粒分明，百搭所有菜肴。</p><div class="dish-price">¥5</div></div></div>
+      <div class="dish-card">
+        <div class="img-wrap carousel" data-imgs='["Dishes/东北冷面.jpg","Dishes/东北冷面2.jpg","Dishes/东北冷面3.jpg"]'>
+          <div class="carousel-track">
+            <img src="Dishes/东北冷面.jpg" alt="东北冷面"/>
+            <img src="Dishes/东北冷面2.jpg" alt="东北冷面"/>
+            <img src="Dishes/东北冷面3.jpg" alt="东北冷面"/>
+          </div>
+          <button class="carousel-btn prev">‹</button>
+          <button class="carousel-btn next">›</button>
+          <div class="carousel-dots">
+            <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+          </div>
+        </div>
+        <div class="dish-info"><h4>东北冷面</h4><p>延边荞麦面配冰镇牛肉汤，加苹果、黄瓜、辣白菜，酸甜爽滑，夏季最解暑。</p><div class="dish-price">¥28</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/东北烤冷面.jpg" alt="东北烤冷面"/></div>
+        <div class="dish-info"><h4>东北烤冷面</h4><p>冷面饼铁板烤制，配鸡蛋、烤肠，刷秘制酱，外焦内软，街头第一美食。</p><div class="dish-price">¥22</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/大盘鸡拌面.jpeg" alt="大盘鸡拌面"/></div>
+        <div class="dish-info"><h4>大盘鸡拌面</h4><p>新疆大盘鸡东北版，整鸡红烧至骨肉分离，拌入宽面，汤汁浓香，量大实惠。</p><div class="dish-price">¥58</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/西红柿打卤面.jpg" alt="西红柿打卤面"/></div>
+        <div class="dish-info"><h4>西红柿打卤面</h4><p>手擀面配现熬西红柿鸡蛋卤，酸甜浓郁，面条劲道，最朴实的东北家常味。</p><div class="dish-price">¥28</div></div>
+      </div>
+      <div class="dish-card">
+        <div class="img-wrap"><img src="Dishes/肉酱面.jpg" alt="肉酱面"/></div>
+        <div class="dish-info"><h4>肉酱面</h4><p>猪肉末以甜面酱慢炒，浇在劲道手擀面上，配黄瓜丝与葱花，香浓入味。</p><div class="dish-price">¥28</div></div>
+      </div>
     </div>
   </div>
+
+  <!-- 饮品 -->
+  <div class="category">
+    <div class="category-title"><h3>饮品</h3><span class="cat-en">Beverages</span></div>
+    <div class="dish-grid">
+      <div class="dish-card">
+        <div class="img-wrap carousel" data-imgs='["Dishes/青梅煮酒.jpg","Dishes/青梅煮酒2.jpg","Dishes/青梅煮酒3.jpg"]'>
+          <div class="carousel-track">
+            <img src="Dishes/青梅煮酒.jpg" alt="青梅煮酒"/>
+            <img src="Dishes/青梅煮酒2.jpg" alt="青梅煮酒"/>
+            <img src="Dishes/青梅煮酒3.jpg" alt="青梅煮酒"/>
+          </div>
+          <button class="carousel-btn prev">‹</button>
+          <button class="carousel-btn next">›</button>
+          <div class="carousel-dots">
+            <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+          </div>
+        </div>
+        <div class="dish-info"><h4>青梅煮酒</h4><p>精选南方青梅，以王哥私藏高粱酒浸泡，酸甜醇厚，微醺之间别有风味。</p><div class="dish-price">¥38</div></div>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <footer id="footer">
@@ -239,6 +463,34 @@
   营业时间：11:00 – 21:30 &nbsp;|&nbsp; 每日新鲜食材，限量供应<br/><br/>
   <span style="color:#5a4a3a">© 2026 大东北 -- 永远的土. All rights reserved.</span>
 </footer>
+
+<script>
+  // Carousel init
+  document.querySelectorAll('.img-wrap.carousel').forEach(function(wrap) {
+    var track = wrap.querySelector('.carousel-track');
+    var dots  = wrap.querySelectorAll('.dot');
+    var total = dots.length;
+    var cur   = 0;
+
+    function goTo(n) {
+      cur = (n + total) % total;
+      track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === cur); });
+    }
+
+    wrap.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); goTo(cur - 1); });
+    wrap.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); goTo(cur + 1); });
+    dots.forEach(function(d, i) { d.addEventListener('click', function() { goTo(i); }); });
+
+    // Touch swipe
+    var startX = 0;
+    track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive: true});
+    track.addEventListener('touchend', function(e) {
+      var diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 30) goTo(cur + (diff > 0 ? 1 : -1));
+    }, {passive: true});
+  });
+</script>
 
 <script src="nav.js"></script>
 </body>
