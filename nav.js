@@ -7,15 +7,18 @@
     '  backdrop-filter: blur(8px);' +
     '  display: flex; align-items: center; justify-content: space-between;' +
     '  padding: 0 2.5rem; height: 62px;' +
+    '  font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;' +
     '}' +
     'nav#site-nav .nav-brand {' +
     '  color: #c8a96e; font-size: 1.05rem; font-weight: 700;' +
     '  letter-spacing: 0.05em; text-decoration: none; white-space: nowrap;' +
+    '  font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;' +
     '}' +
     'nav#site-nav ul { list-style: none; display: flex; gap: 2rem; margin: 0; padding: 0; }' +
     'nav#site-nav ul a {' +
     '  color: #d8c9b0; text-decoration: none;' +
     '  font-size: 0.82rem; letter-spacing: 0.12em; transition: color 0.2s;' +
+    '  font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;' +
     '}' +
     'nav#site-nav ul a:hover, nav#site-nav ul a.nav-active { color: #c8a96e; }' +
     '@media (max-width: 700px) {' +
