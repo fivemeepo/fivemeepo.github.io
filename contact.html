@@ -366,13 +366,44 @@
 </footer>
 
 <script>
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    var btn = e.target.querySelector('.form-submit');
-    btn.textContent = '已收到，王哥会尽快联系您 ✓';
+    var form = e.target;
+    var btn = form.querySelector('.form-submit');
+    btn.textContent = '正在提交...';
+    btn.disabled = true;
+
+    var name = form.querySelector('input[type="text"]').value;
+    var date = form.querySelector('input[type="date"]').value || '未选择';
+    var guests = form.querySelector('select').value || '未选择';
+    var notes = form.querySelector('textarea').value || '无';
+
+    var ipInfo = '';
+    try {
+      var res = await fetch('https://ipapi.co/json/');
+      var data = await res.json();
+      ipInfo = 'IP: ' + data.ip + '\n'
+        + '位置: ' + data.city + ', ' + data.region + ', ' + data.country_name + '\n'
+        + 'ISP: ' + data.org;
+    } catch(err) {
+      ipInfo = '无法获取IP信息';
+    }
+
+    var subject = encodeURIComponent('预约请求 - ' + name);
+    var body = encodeURIComponent(
+      '姓名: ' + name + '\n'
+      + '期望日期: ' + date + '\n'
+      + '用餐人数: ' + guests + '\n'
+      + '特别备注: ' + notes + '\n\n'
+      + '--- 用户信息 ---\n'
+      + ipInfo
+    );
+
+    window.location.href = 'mailto:businiaowyf@gmail.com?subject=' + subject + '&body=' + body;
+
+    btn.textContent = '已打开邮件客户端 ✓';
     btn.style.background = '#7a5c2e';
     btn.style.color = '#f4efe8';
-    btn.disabled = true;
   }
 </script>
 <script src="nav.js"></script>
