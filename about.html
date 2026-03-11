@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>关于王哥 · 大东北</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ivory:   #f4efe8;
+      --ivory2:  #ede7de;
+      --white:   #fdfaf7;
+      --dark:    #1e160a;
+      --ink:     #2e2010;
+      --muted:   #6b5a42;
+      --accent:  #7a5c2e;
+      --gold:    #a07830;
+      --line:    #c8b89a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Noto Serif SC", serif;
+      background: var(--ivory);
+      color: var(--ink);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(30, 22, 10, 0.96);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 62px;
+    }
+    nav .brand {
+      color: #c8a96e;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul a {
+      color: #d8c9b0;
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      transition: color 0.2s;
+    }
+    nav ul a:hover, nav ul a.active { color: #c8a96e; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ivory);
+      text-align: center;
+      padding: 7rem 2rem 5rem;
+    }
+    .hero .eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+    }
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.6rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    .hero h1 em {
+      display: block;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent);
+    }
+    .hero .lead {
+      max-width: 620px;
+      margin: 2rem auto 0;
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.95;
+      font-weight: 300;
+    }
+
+    /* ── HERO IMAGE ── */
+    .hero-image {
+      max-width: 700px;
+      margin: 4rem auto 0;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .hero-image img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+    }
+
+    .divider-monogram {
+      text-align: center;
+      padding: 3rem 0 2rem;
+      color: var(--line);
+      font-size: 2rem;
+      letter-spacing: 0.3em;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline-section {
+      background: var(--white);
+      padding: 6rem 0 8rem;
+    }
+    .timeline-label {
+      text-align: center;
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 5rem;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    /* vertical center line */
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--line);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-bottom: 8rem;
+      position: relative;
+    }
+    /* dot on the line */
+    .timeline-item::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 10px;
+      height: 10px;
+      background: var(--white);
+      border: 1.5px solid var(--accent);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+
+    /* odd: text left, image right */
+    .timeline-item .t-text { padding: 2rem 5rem 2rem 1rem; }
+    .timeline-item .t-image { padding: 0 1rem 0 5rem; }
+
+    /* even: image left, text right */
+    .timeline-item.reverse .t-text { order: 2; padding: 2rem 1rem 2rem 5rem; }
+    .timeline-item.reverse .t-image { order: 1; padding: 0 5rem 0 1rem; }
+
+    .t-eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .t-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+    .t-subtitle {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .t-body {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.95;
+      font-weight: 300;
+      max-width: 380px;
+    }
+    .timeline-item.reverse .t-body { margin-left: 0; }
+
+    .t-image img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 2px;
+      display: block;
+    }
+
+    /* ── QUOTE ── */
+    .quote-section {
+      background: var(--ivory2);
+      padding: 7rem 2rem;
+      text-align: center;
+    }
+    .quote-section blockquote {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .quote-section blockquote p {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--dark);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .quote-section blockquote cite {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      font-style: normal;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--dark);
+      padding: 8rem 2rem;
+      text-align: center;
+    }
+    .cta-section .eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      color: #a07830;
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+    }
+    .cta-section h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: #f0e6d0;
+      line-height: 1.15;
+    }
+    .cta-section h2 em {
+      display: block;
+      font-style: italic;
+      font-weight: 400;
+      color: #c8a96e;
+    }
+    .cta-section p {
+      max-width: 500px;
+      margin: 1.8rem auto 0;
+      color: #9a8a72;
+      font-size: 0.95rem;
+      line-height: 1.85;
+      font-weight: 300;
+    }
+    .cta-btn {
+      display: inline-block;
+      margin-top: 2.5rem;
+      padding: 0.9rem 2.8rem;
+      border: 1px solid #a07830;
+      color: #c8a96e;
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      transition: background 0.25s, color 0.25s;
+      border-radius: 1px;
+    }
+    .cta-btn:hover {
+      background: #a07830;
+      color: var(--dark);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #120c04;
+      color: #6b5a42;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      font-size: 0.8rem;
+      line-height: 1.9;
+    }
+    footer strong { color: #c8a96e; }
+    footer a { color: #9a7a48; text-decoration: none; }
+    footer a:hover { color: #c8a96e; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 740px) {
+      .timeline::before { display: none; }
+      .timeline-item,
+      .timeline-item.reverse {
+        grid-template-columns: 1fr;
+      }
+      .timeline-item .t-text,
+      .timeline-item.reverse .t-text { order: 2; padding: 1.5rem 0; }
+      .timeline-item .t-image,
+      .timeline-item.reverse .t-image { order: 1; padding: 0; }
+      .timeline-item::after { display: none; }
+      nav ul { gap: 1rem; }
+      nav ul a { font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="brand">大东北 -- 王哥私房菜</a>
+  <ul>
+    <li><a href="about.html" class="active">关于王哥</a></li>
+    <li><a href="index.html#menu">菜单</a></li>
+    <li><a href="index.html#footer">联系王哥</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">王哥的故事</div>
+  <h1>
+    三十年烹饪传奇
+    <em>一生只做一件事</em>
+  </h1>
+  <p class="lead">
+    他不是厨师，他是守艺人。用三十年时光，将一片黑土地上朴实无华的家常味道，
+    淬炼成令人魂牵梦萦的私房传奇。这是王哥的故事，也是大东北的故事。
+  </p>
+</section>
+
+<div class="hero-image">
+  <img
+    src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&auto=format&fit=crop"
+    onerror="this.onerror=null;this.src='https://picsum.photos/seed/wangge-hero/1400/900'"
+    alt="王哥私房菜"
+  />
+</div>
+
+<div class="divider-monogram">— 王 —</div>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="timeline-label">从学厨到今日</div>
+
+  <div class="timeline">
+
+    <!-- 1992 -->
+    <div class="timeline-item">
+      <div class="t-text">
+        <div class="t-eyebrow">扎根黑土</div>
+        <div class="t-title">1992</div>
+        <div class="t-subtitle">哈尔滨，启程</div>
+        <p class="t-body">
+          王哥出生于黑龙江省哈尔滨市一个普通工人家庭，自幼跟随外婆在老灶台前学习东北家常菜。
+          彼时，他还不知道，那一锅咕嘟作响的猪肉炖粉条，将成为他一生守护的信仰。
+          对锅铲与火候的直觉，是黑土地赐予他的天赋。
+        </p>
+      </div>
+      <div class="t-image">
+        <img
+          src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&auto=format&fit=crop"
+          onerror="this.onerror=null;this.src='https://picsum.photos/seed/kitchen1992/700/525'"
+          alt="1992 学厨启程"
+        />
+      </div>
+    </div>
+
+    <!-- 1998 -->
+    <div class="timeline-item reverse">
+      <div class="t-image">
+        <img
+          src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=700&auto=format&fit=crop"
+          onerror="this.onerror=null;this.src='https://picsum.photos/seed/master1998/700/525'"
+          alt="1998 拜师学艺"
+        />
+      </div>
+      <div class="t-text">
+        <div class="t-eyebrow">拜师学艺</div>
+        <div class="t-title">1998</div>
+        <div class="t-subtitle">名厨门下，三年磨砺</div>
+        <p class="t-body">
+          经人引荐，王哥拜入东北名厨李大成门下，系统研习溜肉段、锅包肉、铁锅炖等
+          经典技法。恩师常说："火候是灵魂，食材是诚意。"
+          这句话，王哥此后三十年从未忘记。
+        </p>
+      </div>
+    </div>
+
+    <!-- 2005 -->
+    <div class="timeline-item">
+      <div class="t-text">
+        <div class="t-eyebrow">自立门户</div>
+        <div class="t-title">2005</div>
+        <div class="t-subtitle">大东北私房菜，诞生</div>
+        <p class="t-body">
+          带着对家乡味道的执念，王哥在沈阳铁西区开设了第一家私房菜馆——大东北。
+          只有六张桌子，没有任何招牌，却凭借口耳相传，
+          开业三个月便需提前一个月预约。那一年，他三十出头，意气风发。
+        </p>
+      </div>
+      <div class="t-image">
+        <img
+          src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=700&auto=format&fit=crop"
+          onerror="this.onerror=null;this.src='https://picsum.photos/seed/open2005/700/525'"
+          alt="2005 开业"
+        />
+      </div>
+    </div>
+
+    <!-- 2012 -->
+    <div class="timeline-item reverse">
+      <div class="t-image">
+        <img
+          src="https://images.unsplash.com/photo-1544025162-d76538867990?w=700&auto=format&fit=crop"
+          onerror="this.onerror=null;this.src='https://picsum.photos/seed/award2012/700/525'"
+          alt="2012 米其木木三星"
+        />
+      </div>
+      <div class="t-text">
+        <div class="t-eyebrow">荣誉加身</div>
+        <div class="t-title">2012</div>
+        <div class="t-subtitle">米其木木三星，东北第一</div>
+        <p class="t-body">
+          凭借对传统东北菜的坚守与创新诠释，大东北荣获米其木木三星认证，
+          成为东北餐饮史上首家获此殊荣的私房菜馆。
+          那一晚，王哥在后厨独自坐了很久，想起了外婆的老灶台。
+        </p>
+      </div>
+    </div>
+
+    <!-- 2020 -->
+    <div class="timeline-item">
+      <div class="t-text">
+        <div class="t-eyebrow">薪火相传</div>
+        <div class="t-title">2020</div>
+        <div class="t-subtitle">传承，是最好的守护</div>
+        <p class="t-body">
+          王哥开始正式收徒，将数十年积累的东北烹饪技艺系统整理成册，
+          建立"大东北烹饪学堂"。他说："我这辈子只做一件事，
+          但我希望有人能把这件事再做一百年。"
+        </p>
+      </div>
+      <div class="t-image">
+        <img
+          src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=700&auto=format&fit=crop"
+          onerror="this.onerror=null;this.src='https://picsum.photos/seed/teach2020/700/525'"
+          alt="2020 传承"
+        />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <blockquote>
+    <p>
+      "东北的菜，贵在一个'真'字。<br/>
+      真材实料，真火慢炖，真心待客。<br/>
+      这片土地教会我的，全在这一锅里。"
+    </p>
+    <cite>— 王哥，2023年专访</cite>
+  </blockquote>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="eyebrow">亲爱的食客</div>
+  <h2>
+    现在，轮到你了
+    <em>来品尝王哥的味道</em>
+  </h2>
+  <p>
+    三十年的执念，凝结在每一道菜里。
+    无论是溜肉段的金黄酥脆，还是铁锅炖的浓香扑鼻，
+    每一口，都是王哥对这片黑土地最深情的告白。
+  </p>
+  <a href="index.html#menu" class="cta-btn">查看菜单</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>大东北 -- 永远的土</strong><br/>
+  正宗东北风味 · 米其木木三星 · 用心做好每一道菜<br/>
+  营业时间：11:00 – 21:30 &nbsp;|&nbsp;
+  <a href="index.html">返回首页</a><br/><br/>
+  <span>© 2026 大东北 -- 永远的土. All rights reserved.</span>
+</footer>
+
+</body>
+</html>
