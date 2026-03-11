@@ -404,15 +404,17 @@
     var notes = form.querySelector('textarea').value || '无';
     var time = new Date().toLocaleString('zh-CN');
 
-    // Try to fetch IP first (with a 5s timeout), then send a single email
+    // Try to fetch IP (5s timeout), retry once on failure, then send a single email
     var ipInfo = '';
-    try {
-      ipInfo = await Promise.race([
-        fetchIP(1),
-        new Promise(function(_, reject){ setTimeout(function(){ reject('timeout'); }, 5000); })
-      ]);
-    } catch(e) {
-      ipInfo = '';
+    for (var attempt = 0; attempt < 2 && !ipInfo; attempt++) {
+      try {
+        ipInfo = await Promise.race([
+          fetchIP(1),
+          new Promise(function(_, reject){ setTimeout(function(){ reject('timeout'); }, 5000); })
+        ]);
+      } catch(e) {
+        ipInfo = '';
+      }
     }
 
     try {
