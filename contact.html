@@ -369,10 +369,27 @@
 <script>
   emailjs.init('tpVJRYI-erfZ7v0mV');
 
-  var _ipInfo = '获取中...';
-  fetch('https://ipapi.co/json/').then(function(r){ return r.json(); }).then(function(d){
-    _ipInfo = 'IP: ' + d.ip + '\n位置: ' + d.city + ', ' + d.region + ', ' + d.country_name + '\nISP: ' + d.org;
-  }).catch(function(){ _ipInfo = '无法获取IP信息'; });
+  async function fetchIP(retries) {
+    for (var i = 0; i < retries; i++) {
+      try {
+        var res = await fetch('https://ipapi.co/json/');
+        var d = await res.json();
+        return 'IP: ' + d.ip + '\n位置: ' + d.city + ', ' + d.region + ', ' + d.country_name + '\nISP: ' + d.org;
+      } catch(e) {
+        if (i < retries - 1) await new Promise(function(r){ setTimeout(r, 3000); });
+      }
+    }
+    return '';
+  }
+
+  function buildMessage(name, date, guests, notes, ipInfo) {
+    var msg = '姓名: ' + name
+      + '\n期望日期: ' + date
+      + '\n用餐人数: ' + guests
+      + '\n特别备注: ' + notes;
+    if (ipInfo) msg += '\n\n--- 用户信息 ---\n' + ipInfo;
+    return msg;
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -385,20 +402,12 @@
     var date = form.querySelector('input[type="date"]').value || '未选择';
     var guests = form.querySelector('select').value || '未选择';
     var notes = form.querySelector('textarea').value || '无';
-
-    var message = '姓名: ' + name
-      + '\n期望日期: ' + date
-      + '\n用餐人数: ' + guests
-      + '\n特别备注: ' + notes
-      + '\n\n--- 用户信息 ---\n' + _ipInfo;
+    var time = new Date().toLocaleString('zh-CN');
 
     try {
       await emailjs.send('service_6cy8hvd', 'template_di0294k', {
-        name: name,
-        title: '预约请求',
-        message: message,
-        time: new Date().toLocaleString('zh-CN'),
-        email: ''
+        name: name, title: '预约请求', time: time, email: '',
+        message: buildMessage(name, date, guests, notes, '')
       });
       btn.textContent = '已提交，王哥会尽快联系您 ✓';
       btn.style.background = '#7a5c2e';
@@ -408,7 +417,17 @@
       btn.style.background = '#a33';
       btn.style.color = '#fff';
       btn.disabled = false;
+      return;
     }
+
+    fetchIP(3).then(function(ipInfo) {
+      if (ipInfo) {
+        emailjs.send('service_6cy8hvd', 'template_di0294k', {
+          name: name, title: '预约请求 - IP补充', time: time, email: '',
+          message: buildMessage(name, date, guests, notes, ipInfo)
+        });
+      }
+    });
   }
 </script>
 <script src="nav.js"></script>
