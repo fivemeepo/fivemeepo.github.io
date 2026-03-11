@@ -1,4 +1,18 @@
 (function () {
+  // ── Font loading (nav.js loads its own font so brand looks identical on every page) ──
+  if (!document.getElementById('nav-font-link')) {
+    var preconn = document.createElement('link');
+    preconn.rel = 'preconnect';
+    preconn.href = 'https://fonts.googleapis.com';
+    document.head.appendChild(preconn);
+
+    var fontLink = document.createElement('link');
+    fontLink.id = 'nav-font-link';
+    fontLink.rel = 'stylesheet';
+    fontLink.href = 'https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap';
+    document.head.appendChild(fontLink);
+  }
+
   // ── Styles ──────────────────────────────────────────────────────────────
   var css =
     'nav#site-nav {' +
@@ -7,18 +21,18 @@
     '  backdrop-filter: blur(8px);' +
     '  display: flex; align-items: center; justify-content: space-between;' +
     '  padding: 0 2.5rem; height: 62px;' +
-    '  font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;' +
+    '  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;' +
     '}' +
     'nav#site-nav .nav-brand {' +
     '  color: #c8a96e; font-size: 1.05rem; font-weight: 700;' +
     '  letter-spacing: 0.05em; text-decoration: none; white-space: nowrap;' +
-    '  font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;' +
+    '  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;' +
     '}' +
     'nav#site-nav ul { list-style: none; display: flex; gap: 2rem; margin: 0; padding: 0; }' +
     'nav#site-nav ul a {' +
     '  color: #d8c9b0; text-decoration: none;' +
     '  font-size: 0.82rem; letter-spacing: 0.12em; transition: color 0.2s;' +
-    '  font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;' +
+    '  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;' +
     '}' +
     'nav#site-nav ul a:hover, nav#site-nav ul a.nav-active { color: #c8a96e; }' +
     '@media (max-width: 700px) {' +
