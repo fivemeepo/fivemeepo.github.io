@@ -58,7 +58,7 @@
     /* ── HERO ── */
     .hero {
       position: relative;
-      height: 520px;
+      height: 560px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -87,8 +87,23 @@
       text-shadow: 0 2px 12px rgba(0,0,0,0.6);
     }
     .hero h1 span { color: var(--gold); }
+    .hero-michelin {
+      margin-top: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--gold);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+    }
+    .hero-michelin .stars {
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+    }
     .hero p {
-      margin-top: 1rem;
+      margin-top: 0.9rem;
       color: #e8d9c5;
       font-size: 1.05rem;
       max-width: 480px;
@@ -276,6 +291,11 @@
 <section class="hero">
   <div class="hero-badge">正宗东北风味 · 永远的土地</div>
   <h1>大东北<br/><span>永远的土</span></h1>
+  <div class="hero-michelin">
+    <span class="stars">★★★</span>
+    <span>米其木木三星餐厅</span>
+    <span class="stars">★★★</span>
+  </div>
   <p>源自白山黑水间的家乡味道，用心烹饪每一道菜，让每一口都是回忆。</p>
   <a href="#menu" class="hero-btn">查看菜单</a>
 </section>
