@@ -365,7 +365,9 @@
   <span>© 2026 大东北 -- 永远的土. All rights reserved.</span>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
+  emailjs.init('tpVJRYI-erfZ7v0mV');
   async function handleSubmit(e) {
     e.preventDefault();
     var form = e.target;
@@ -378,32 +380,38 @@
     var guests = form.querySelector('select').value || '未选择';
     var notes = form.querySelector('textarea').value || '无';
 
-    var ipInfo = '';
+    var ipInfo = '无法获取IP信息';
     try {
       var res = await fetch('https://ipapi.co/json/');
       var data = await res.json();
-      ipInfo = 'IP: ' + data.ip + '\n'
-        + '位置: ' + data.city + ', ' + data.region + ', ' + data.country_name + '\n'
-        + 'ISP: ' + data.org;
+      ipInfo = 'IP: ' + data.ip
+        + '\n位置: ' + data.city + ', ' + data.region + ', ' + data.country_name
+        + '\nISP: ' + data.org;
+    } catch(err) {}
+
+    var message = '姓名: ' + name
+      + '\n期望日期: ' + date
+      + '\n用餐人数: ' + guests
+      + '\n特别备注: ' + notes
+      + '\n\n--- 用户信息 ---\n' + ipInfo;
+
+    try {
+      await emailjs.send('service_6cy8hvd', 'template_jjlyv79', {
+        name: name,
+        title: '预约请求',
+        message: message,
+        time: new Date().toLocaleString('zh-CN'),
+        email: ''
+      });
+      btn.textContent = '已提交，王哥会尽快联系您 ✓';
+      btn.style.background = '#7a5c2e';
+      btn.style.color = '#f4efe8';
     } catch(err) {
-      ipInfo = '无法获取IP信息';
+      btn.textContent = '提交失败，请稍后重试';
+      btn.style.background = '#a33';
+      btn.style.color = '#fff';
+      btn.disabled = false;
     }
-
-    var subject = encodeURIComponent('预约请求 - ' + name);
-    var body = encodeURIComponent(
-      '姓名: ' + name + '\n'
-      + '期望日期: ' + date + '\n'
-      + '用餐人数: ' + guests + '\n'
-      + '特别备注: ' + notes + '\n\n'
-      + '--- 用户信息 ---\n'
-      + ipInfo
-    );
-
-    window.location.href = 'mailto:businiaowyf@gmail.com?subject=' + subject + '&body=' + body;
-
-    btn.textContent = '已打开邮件客户端 ✓';
-    btn.style.background = '#7a5c2e';
-    btn.style.color = '#f4efe8';
   }
 </script>
 <script src="nav.js"></script>
