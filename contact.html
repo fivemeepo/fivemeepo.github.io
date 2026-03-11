@@ -404,10 +404,21 @@
     var notes = form.querySelector('textarea').value || '无';
     var time = new Date().toLocaleString('zh-CN');
 
+    // Try to fetch IP first (with a 5s timeout), then send a single email
+    var ipInfo = '';
+    try {
+      ipInfo = await Promise.race([
+        fetchIP(1),
+        new Promise(function(_, reject){ setTimeout(function(){ reject('timeout'); }, 5000); })
+      ]);
+    } catch(e) {
+      ipInfo = '';
+    }
+
     try {
       await emailjs.send('service_6cy8hvd', 'template_di0294k', {
         name: name, title: '预约请求', time: time, email: '',
-        message: buildMessage(name, date, guests, notes, '')
+        message: buildMessage(name, date, guests, notes, ipInfo || '')
       });
       btn.textContent = '已提交，王哥会尽快联系您 ✓';
       btn.style.background = '#7a5c2e';
@@ -417,17 +428,7 @@
       btn.style.background = '#a33';
       btn.style.color = '#fff';
       btn.disabled = false;
-      return;
     }
-
-    fetchIP(3).then(function(ipInfo) {
-      if (ipInfo) {
-        emailjs.send('service_6cy8hvd', 'template_di0294k', {
-          name: name, title: '预约请求 - IP补充', time: time, email: '',
-          message: buildMessage(name, date, guests, notes, ipInfo)
-        });
-      }
-    });
   }
 </script>
 <script src="nav.js"></script>
